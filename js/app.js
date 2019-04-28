@@ -75,7 +75,6 @@ function initializeGame() {
   $('.moves').text(0);
   $('.stars').find('i').removeClass('display-none');
   $('.timer').text('00:00:00');
-  timeID = setTimeout(countTime, 1000);
 
 }
 
@@ -175,6 +174,11 @@ $(function() {
   // Executes when card (a li element) is clicked
   // Delegates the click event to card (li element)
   $('.deck').on('click', '.card', function(event) {
+
+    // Initializes timer in the first click
+    if (Number($('.moves').text()) === 0 && listOpenCards.length === 0) {
+      timeID = setTimeout(countTime, 1000);
+    }
 
     const card = $(event.target).is('li') ? $(event.target) : $(event.target).parent();
 
